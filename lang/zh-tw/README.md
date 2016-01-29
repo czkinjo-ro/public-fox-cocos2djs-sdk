@@ -1,109 +1,102 @@
-# Force Operation Xとは
+# Force Operation X是什麼
 
-Force Operation X (以下F.O.X)は、スマートフォンにおける広告効果最適化のためのトータルソリューションプラットフォームです。アプリケーションのダウンロード、ウェブ上でのユーザーアクションの計測はもちろん、スマートフォンユーザーの行動特性に基づいた独自の効果計測基準の元、企業のプロモーションにおける費用対効果を最大化することができます。
+Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改善廣告效果的綜合解決方案平台。除了對APP下載量和網絡用戶操作的基本計測外，還能基於手機用戶行為特性採用獨自效果計測基準，實現了企業宣傳推廣时費用与效果比的最大改善。
 
-本ドキュメントでは、スマートフォンアプリケーションにおける広告効果最大化のためのF.O.X SDK導入手順について説明します。
+在這個文檔裡，詳細講解了基於智慧手機平台優化廣告效果的F.O.X SDK的導入步驟。
 
-## F.O.X SDKとは
+## F.O.X SDK是什麼
 
-F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
+在APP中導入FOX，可以實現如下功能。
 
-* **インストール計測**
+* **Install計測**
 
-広告流入別にインストール数を計測することができます。
+能夠按不同的廣告流入來計測安裝數。
 
 * **LTV計測**
 
-流入元広告別にLife Time Valueを計測します。主な成果地点としては、会員登録、チュートリアル突破、課金などがあります。各広告別に登録率、課金率や課金額などを計測することができます。
+按不同的廣告流入来計測Life Time Value。作為主要的成果地點，有會員登錄，教程突破，消费等。能夠按照不同廣告来監測登錄率，消費率和消費額等。
 
-* **アクセス解析**
+* **流量分析**
 
-自然流入と広告流入のインストール比較。アプリケーションの起動数やユニークユーザー数(DAU/MAU)。継続率等を計測することができます。
-
+自然流入和廣告流入的APP安裝數比較。能夠計測APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。
 
 # 1.	概要
 
-本ドキュメントでは、Force Operation X SDK Cocos2d-js プラグインの導入手順について説明します。Force Operation X SDK Cocos2d-jsプラグインはiOSおよびAndroidに対応しています。
+本文檔說明了針對Force Operation X SDK Cocos2d-js插件的導入步驟。Force Operation X SDK Cocos2d-js插件適用於iOS和Android。
 
-Force Operation X SDKでは、インストールおよびLTVの計測、アクセス解析を行うことができます。
+使用Force Operation X SDK能夠進行Install計測和LTV計測，流量分析。
 
-SDKの実装後は、アプリケーションの動作及び効果測定の結果に問題のないことを確認した後にマーケットへの申請を行ってください。効果測定のテスト手順については、Force Operation X管理者よりご連絡いたします。
+在安裝完SDK以後，請確認APP的動作和效果測定結果裡沒有問題以後再向Market提出申請。有關效果測定的測試步驟，Force Operation X管理員會來聯繫。
 
-## 1.1	SDK仕様
+## 1.1 SDK式樣
 
+在APP中導入F.O.X，可以實現如下功能。
 
-F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
-
-
-|処理|必須|概要|
+|處理|必須|概要|
 |:------:|:------:|:------|
-|インストール計測|必須|起動時はブラウザが起動し、Cookie計測により広告効果測定を行います。<br>コンバージョン数、CVRなどを測定することができます。<br>メソッド名：sendConversion|
-|LTV計測|オプション|任意の成果地点で成果通知を行い、広告別の課金数や入会数の計測を行います。<br>課金金額、退会数などを測定することができます。<br>メソッド名：sendLtv|
-|アクセス解析|オプション|アプリの起動時およびバックグラウンドからの復帰時の起動計測を行います。<br>起動数、アクティブユーザー数(DAU)、継続率などを測定することができます。<br>メソッド名：sendStartSession|
+|Install計測|必須|啟動時，透過瀏覽器的啟動、Cookie計測手法，進行廣告效果測量。能夠測量啟動數、CVR等等。Method名稱：sendConversion|
+|LTV計測|任意|在任意的成果地點進行成果通知，進行廣告別的消費數和入會員數測量。能夠測量消費金額、退出會員數等等。Method名稱：sendLtv|
+|流量分析|任意|計測APP啟動和從Background恢復時的啟動。能夠啟動啟動數、活躍用戶數(DAU)、持續率。Method名稱：sendStartSession|
 
+> Force Operation X SDK Cocos2d-js plugin是為了連接Native版本的SDK而做的wrapper，所以為了正確的導入SDK，需要iOS或Android的Native版本的SDK
 
+#2.	iOS用Xcode項目的設定
 
-> Force Operation X SDK Cocos2d-js プラグインは、ネイティブ版SDKへのブリッジを行うラッパーとして実装しています。SDK導入には、プラグインと、iOS及びAndroidのネイティブ版SDKが必要となります。_
+##2.1	SDK的展開
 
+將下載的SDK「FOX_Cocos2djs_SDK_&lt;version&gt;.zip」在OS上展開。被打包在Classes文件夾裡的文件如下。
 
-#2.	iOS用 Xcode プロジェクトの設定
-
-
-##2.1	SDKの展開
-
-ダウンロードしたSDK「FOX_Cocos2djs_SDK_<version>.zip」をOS上に展開します。Classesフォルダ内に同梱されているファイルは以下の通りです。
-
-ファイル名|必須|概要
+文件名|必須|概要
 :--------|:-------------:|:--------:
-jsb_Cocos2dxFox_auto.cpp|必須|JavaScriptからC++を使用するためのjsbファイル
-jsb_Cocos2dxFox_auto.hpp|必須|JavaScriptからC++を使用するためのjsbファイル
-Cocos2dxFox.h|必須|ヘッダファイル。Cocos2d-xからSDKを使用するためのラッパー
-Cocos2dxFox.mm|	iOS専用	|ライブラリファイル。Cocos2d-xからFOX SDKを使用するためのiOS用のラッパー
-Cocos2dxFox.cpp|Android専用|ライブラリファイル。Cocos2d-xからFOX SDKを使用するためのAndroid用のラッパー
-FoxVersionPlugin.h|オプション|ヘッダファイル。Cocos2d-xからバンドルバージョンを制御するラッパー
-FoxVersionDelegate.m|オプション|ライブラリファイル。Cocos2d-xからバンドルバージョンを制御するラッパー|
-FoxVersionPlugin.h|オプション|ヘッダファイル。Cocos2d-xからバンドルバージョンを制御するラッパー|
-FoxVersionPlugin.m|オプション|ライブラリファイル。Cocos2d-xからバンドルバージョンを制御するラッパー|
-FoxReengagePlugin.h|オプション|ライブラリファイル。Cocos2d-xからURLスキーム経由の起動計測を行うためのラッパー|
-FoxReengagePlugin.m|オプション|ヘッダファイル。Cocos2d-xからURLスキーム経由の起動計測を行うためのラッパー|
+jsb_Cocos2dxFox_auto.cpp|必須|實現從JavaScript到使用C++的jsb文件
+jsb_Cocos2dxFox_auto.hpp|必須|實現從JavaScript到使用C++的jsb文件
+Cocos2dxFox.h|必須|頭文件。為從Cocos2d-x使用SDK做的封裝
+Cocos2dxFox.mm|	iOS専用	|類庫文件。在iOS環境為從Cocos2d-x使用FOX SDK做的封裝
+Cocos2dxFox.cpp|Android専用|類庫文件。在Android環境為從Cocos2d-x使用FOX SDK做的封裝
+FoxVersionPlugin.h|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝
+FoxVersionDelegate.m|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝|
+FoxVersionPlugin.h|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝|
+FoxVersionPlugin.m|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝|
+FoxReengagePlugin.h|必須|頭文件。為從Cocos2d-x進行經由URL Scheme的啟動計測做的封裝(※1)|
+FoxReengagePlugin.m|必須|類庫文件。為從Cocos2d-x進行經由URL Scheme的啟動計測做的封裝(※1)|
 
-上記のファイルはラッパーですので、実装ファイルはネイティブSDKを組み合わせます。
+上面的文件是封裝文件，須和Native SDK結合起來進行安裝。
 
-以下のファイル群が、iOSのネイティブSDKとなっており「FOX_iOS_SDK_<version>」フォルダに同梱されています。
+以下文件群是iOS的Native SDK，被一同包裝在「FOX_iOS_SDK_&lt;version&gt;」文件夾裡。
 
-ファイル名|必須|概要
+文件名|必須|概要
 :--------|:-------------:|:--------:
-AdManager.h|必須|ヘッダファイル。広告の効果測定を行う。|
-libAppAdForce.a|必須|ライブラリファイル。広告の効果測定を行う。|
-Ltv.h|オプション|ヘッダファイル。LTV計測を行う。|
-AnalyticsManager.h|オプション|ヘッダファイル。アクセス解析を行う。|
+AdManager.h|必須|頭文件。進行廣告的效果測定。|
+libAppAdForce.a|必須|類庫文件。進行廣告的效果測定。|
+Ltv.h|任意|頭文件。進行LTV計測。|
+AnalyticsManager.h|任意|頭文件。進行流量分析。|
 
-※「FOX_Cocos2djs_SDK_<version>.zip」に「FOX_iOS_SDK_<version>」フォルダが含まれていない場合は
+※如果「FOX_iOS\_SDK_&lt;version&gt;」文件夾沒有包含在「FOX_Cocos2djs\_SDK_&lt;version&gt;.zip」裡
+請從SDK下載網站下載FOX_iOS_SDK_&lt;version&gt;.zip來使用。
 
-SDKダウンロードサイトからFOX_iOS_SDK_<version>.zipをダウンロードの上、ご使用ください。
+##2.2 類庫的導入
+
+* Xcode的菜單「File」→選擇「Add Files to “XXX”」
+* 請導入Cocos2dxFox.h、Cocos2dxFox.mm。Cocos2dxFox.cpp是Android用的類庫文件，所以不需要追加。
+* 如果使用BundleVersion判定功能，請導入FoxVersionDelegate.h、FoxVersionDelegate .mm和FoxVersionPlugin.h、FoxVersionPlugin.mm這4個文件。
+* 如果是支持iOS9或者進行Reengagement計測時，請裝入FoxReengagePlugin.hとFoxReengagePlugin.m兩個文件。
+* 選中「Copy items into destination group’s folder」
 
 
-##2.2	ライブラリの組み込み
-* Xcodeのメニュー「File」→「Add Files to “XXX”」を選択
-* Cocos2dxFox.h、Cocos2dxFox.mmを組み込んでください。Cocos2dxFox.cppはAndroid用ライブラリであるため、追加の必要はありません。
-* バンドルバージョン判定機能を使う場合は、FoxVersionDelegate.h、FoxVersionDelegate .mmとFoxVersionPlugin.h、FoxVersionPlugin.mmの計4ファイルを組み込んでください。
-* リエンゲージメント計測を行う場合はFoxReengagePlugin.hとFoxReengagePlugin.mの2ファイルを組み込んでください。
-* 「Copy items into destination group’s folder」にチェック
+![類庫的導入步驟](./doc/integration/img01.png)
 
-![ライブラリの組み込み手順](./doc/integration/ja/img01.png)
+[類庫的導入詳細](./doc/integration/README.md)
 
-[ライブラリの組み込み詳細](./doc/integration/ja/README.md)
+##2.3 導入到Cocos2d-js項目的Classes
+* 將jsb_Cocos2dxFox_auto.cpp和jsb_Cocos2dxFox_auto.hpp複製到project之下的Classes裡<br>
+  （和Android項目通用）
 
-##2.3 Cocos2d-jsプロジェクトのClassesへの導入
-* jsb_Cocos2dxFox_auto.cppとjsb_Cocos2dxFox_auto.hppをプロジェクト配下のClassesへコピー<br>
-  (Androidプロジェクトと共通)
+##2.4 Framework設定
 
-##2.4 フレームワークの追加
-
-次のフレームワークをプロジェクトにリンクしてください。
+請把下面的Framework追加到開發項目裡。
 
 <table>
-<tr><th>フレームワーク名</th><th>Status</th></tr>
+<tr><th>Framework名</th><th>Status</th></tr>
 <tr><td>AdSupport.framework</td><td>Optional</td></tr>
 <tr><td>iAd.framework </td><td>Required</td></tr>
 <tr><td>Security.framework </td><td>Required </td></tr>
@@ -111,15 +104,13 @@ SDKダウンロードサイトからFOX_iOS_SDK_<version>.zipをダウンロー�
 <tr><td>SystemConfiguration.framework </td><td>Required </td></tr>
 </table>
 
-> AdSupport.frameworkはiOS 6以降で追加されたフレームワークのため、アプリケーションをiOS 5以前でも動作させる(iOS Deployment Targetを5.1以下に設定する)場合にはweak linkを行うために”Optional”に設定してください。
+![Framework設定01](./doc/config_framework/img01.png)
 
-![フレームワーク設定01](./doc/config_framework/ja/img01.png)
+[Framework設定的詳細](./doc/config_framework/README.md)
 
-[フレームワーク設定の詳細](./doc/config_framework/ja/README.md)
+##2.5 SDK的設定
 
-##2.5 SDKの設定
-
-SDKの動作に必要な設定をplistに追加します。「AppAdForce.plist」というファイルをプロジェクトの任意の場所に作成し、次のキーと値を入力してください。
+在plist裡追加必要的設定讓SDK發揮作用。新建「AppAdForce.plist」這樣一個Property List文件放到項目的任意一個地方，並輸入下面的Key和Value。
 
 <table>
 <tr>
@@ -130,22 +121,22 @@ SDKの動作に必要な設定をplistに追加します。「AppAdForce.plist�
 <tr>
   <td>APP_ID</td>
   <td>String</td>
-  <td>Force Operation X管理者より連絡しますので、その値を入力してください。</td>
+  <td>請輸入Force Operation X管理員告知的值。</td>
 </tr>
 <tr>
   <td>SERVER_URL</td>
   <td>String</td>
-  <td>Force Operation X管理者より連絡しますので、その値を入力してください。</td>
+  <td>請輸入Force Operation X管理員告知的值。</td>
 </tr>
 <tr>
   <td>APP_SALT</td>
   <td>String</td>
-  <td>Force Operation X管理者より連絡しますので、その値を入力してください。</td>
+  <td>請輸入Force Operation X管理員告知的值。</td>
 </tr>
 <tr>
   <td>APP_OPTIONS</td>
   <td>String</td>
-  <td>何も入力せず、空文字の状態にしてください。</td>
+  <td>請空白。</td>
 </tr>
 <tr>
   <td>CONVERSION_MODE</td>
@@ -155,60 +146,53 @@ SDKの動作に必要な設定をplistに追加します。「AppAdForce.plist�
 <tr>
   <td>ANALYTICS_APP_KEY</td>
   <td>String</td>
-  <td>Force Operation X管理者より連絡しますので、その値を入力してください。<br />アクセス解析を利用しない場合は設定の必要はありません。</td>
+  <td>請將由Force Operation X管理者通知的數值輸入。<br />不利用流量分析的場合沒有必要設定</td>
 </tr>
 </table>
 
-![フレームワーク設定01](./doc/config_plist/ja/img05.png)
+![Framework設定01](./doc/config_plist/img05.png)
 
-[SDK設定の詳細](./doc/config_plist/ja/README.md)
+[SDK設定的詳細](./doc/config_plist/README.md)
 
-[AppAdForce.plistサンプル](./doc/config_plist/AppAdForce.plist)
+[AppAdForce.plist例子](./doc/config_plist/AppAdForce.plist)
 
+#3.	Android用項目的設定
+##3.1	SDK的展開
 
-#3.	Android用 プロジェクトの設定
-##3.1	SDKの展開
+將下載的SDK「FOX_Cocos2djs_SDK_&lt;version&gt;.zip」在OS上展開。<br>並將同樣包在「FOX_Android_SDK_&lt;version&gt;」文件夾裡的「AppAdForce.jar」導入到開發環境。接下來說明針對Eclipse project的導入步驟。
 
-ダウンロードしたSDK「FOX_Cocos2djs_SDK_<version>.zip」をOS上に展開します。<br>
-「FOX_Android_SDK_<version>」フォルダに同梱されている「AppAdForce.jar」を開発環境に導入します。次に、Eclipseプロジェクトへの導入手順について説明します。
-
-|ファイル名|必須|概要|
+|文件名|必須|概要|
 |:------:|:------:|:------|
-|AppAdForce.jar|必須|AndroidのネイティブSDK。通常成果・LTV成果・アクセス解析を計測することができます。|
+|AppAdForce.jar|必須|Android的Native SDK。能夠計測通常成果・LTV成果・流量分析。|
 
-※「FOX_Cocos2djs_SDK_<version>.zip」に「FOX_Android_SDK_<version>」フォルダが含まれていない場合はSDKダウンロードサイトからFOX_Android_SDK_<version>.zipをダウンロードの上、ご使用ください。
+※如果「FOX_Cocos2djs_SDK_&lt;version&gt;.zip」裡不包含「FOX_Android_SDK_&lt;version&gt;」文件夾，請從SDK下載頁面下載FOX_Android_SDK_&lt;version&gt;.zip後使用。
 
-##3.2	プロジェクトへの導入
+##3.2	導入到項目
 
-既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/update/ja)をご参照ください。
+展開下載的SDK「FOX_Android_SDK_&lt;version&gt;.zip」，請把「AppAdForce.jar」導入到APP的項目裡。
 
-ダウンロードしたSDK「FOX_Android_SDK_<version>.zip」を展開し、「AppAdForce.jar」をアプリケーションのプロジェクトに組み込んでください。
+[Eclipse項目的導入方法](./doc/integration/eclipse/)
+[AndroidStudio項目的導入方法](./doc/integration/android_studio/)
 
-[Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/ja/)
+##3.3 AndroidManifest.xml的編輯
+###3.3.1 permission的設定
 
-[AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/ja/)
-
-
-##3.3 AndroidManifest.xmlの編集
-###3.3.1 パーミッションの設定
-
-Force Operation X SDKの実行に必要なパーミッションの設定を<manifest>タグ内に追加します。
-
+為讓Force Operation X SDK執行，請在&lt;Manifest&gt;tag內添加如下permission設定。
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-###3.3.2 メタデータの設定
-|パラメータ名|必須|概要|
+###3.3.2 meta-data的設定
+|參數名|必須|概要|
 |:------|:------|:------|
-|APPADFORCE_APP_ID|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
-|APPADFORCE_SERVER_URL|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
-|APPADFORCE_CRYPTO_SALT|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
-|ANALYTICS_APP_KEY|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
-|APPADFORCE_ID_DIR|オプション|内(外)部ストレージを利用する際、任意の保存するディレクトリ名を指定できます。<br>未指定の場合、パッケージ名でディレクトリが作成されます。|
-|APPADFORCE_ID_FILE|オプション|内(外)部ストレージを利用する際、任意の保存する識別子ファイル名を指定できます。<br>未指定の場合、”__FOX_XUNIQ__”でファイルが作成されます。|
-|APPADFORCE_USE_EXTERNAL_STORAGE|オプション|0を指定した場合、内(外)部ストレージへの保存は実行しません。|
+|APPADFORCE_APP_ID|必須|請輸入Force Operation X管理員告知的值。|
+|APPADFORCE_SERVER_URL|必須|請輸入Force Operation X管理員告知的值。|
+|APPADFORCE_CRYPTO_SALT|必須|請輸入Force Operation X管理員告知的值。|
+|ANALYTICS_APP_KEY|必須|請輸入Force Operation X管理員告知的值。|
+|APPADFORCE_ID_DIR|任意|使用內(外)部存儲時，能夠指定任意的保存目錄名。<br>沒有指定的時候，會用PACKAGE名生成目錄。|
+|APPADFORCE_ID_FILE|任意|使用內(外)部存儲時，能夠指定任意的保存識別子文件名。<br>沒有指定的時候，會用”__FOX_XUNIQ__”生成文件。|
+|APPADFORCE_USE_EXTERNAL_STORAGE|任意|設定為0的時候，不會保存在內(外)部存儲裡。|
 
-Force Operation X SDKの実行に必要な情報を<application>タグ内に追加します。
+為讓Force Operation X SDK執行，請在&lt;application&gt;tag內添加必要的信息。
 
 	<meta-data android:name="APPADFORCE_APP_ID" android:value="1" />
 	<meta-data android:name="APPADFORCE_SERVER_URL" android:value="012345ABC" />
@@ -216,8 +200,8 @@ Force Operation X SDKの実行に必要な情報を<application>タグ内に追�
 	<meta-data android:name="ANALYTICS_APP_KEY" android:value="xxxxxx" />
 
 
-###3.3.3 インストールリファラー計測の設定
-インストールリファラー計測を行うために必要な設定を<application>タグ内に追加します。
+###3.3.3 Install referrer計測的設定
+將Install referrer計測所需要的設定添加在&lt;application&gt;tag內。
 
 	<receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">
 		<intent-filter>
@@ -225,76 +209,72 @@ Force Operation X SDKの実行に必要な情報を<application>タグ内に追�
 		</intent-filter>
 	</receiver>
 
-既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[二つのINSTALL_REFERRERレシーバーを共存させる場合の設定](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/install_referrer/ja/README.md)をご参照ください。
+如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER R seceiver共存的設定](/lang/zh-tw/doc/integration/android/install_referrer/README.md)
 
-###3.3.4 AndroidManifest.xmlに関連するその他の設定
-* [URLスキームの設定](./doc/config_url_scheme/ja/)
-* [（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
-* [（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja)
-* [AndroidManifest.xmlの設定例](./doc/config_androidManifest/ja/AndroidManifest.xml)
-	
+###3.3.4 與AndroidManifest.xml相關的其他設定
+* [URLScheme的設定](./doc/config_url_scheme/)
+* [（任意）導入Google Play Services SDK來使用廣告ID](./doc/google_play_services/)
+* [（任意）利用外部存儲設定重複排除](./doc/external_storage)
+* [AndroidManifest.xml的設定範例](./doc/config_androidManifest/AndroidManifest.xml)
 
+##3.4 導入到Cocos2d-js項目的Classes
 
-##3.4 Cocos2d-jsプロジェクトのClassesへの導入
+展開「FOX_Cocos2djs_SDK_<version>.zip」、進行如下操作。
 
-「FOX_Cocos2djs_SDK_<version>.zip」を展開し、以下の操作を行います。
+* 拷貝Android/Classes下面的Cocos2dxFox.h和Cocos2dxFox.cpp到項目下的Classes。
+* 拷貝Android/Classes下面的jsb_Cocos2dxFox_auto.cpp和jsb_Cocos2dxFox_auto.hpp到項目下的Classes。
+* 添加Cocos2dxFox.cpp和jsb_Cocos2dxFox_auto.cpp到項目下的jni/Android.mk、包含在Build對象內<br>
+　→ 在LOCAL_SRC_FILES裡面添加Classes/Cocos2dxFox.cpp和Classes/jsb_Cocos2dxFox_auto.cpp的指定。
 
-* Android/Classes配下のCocos2dxFox.hとCocos2dxFox.cppをプロジェクト配下のClassesへコピー
-* Android/Classes配下のjsb_Cocos2dxFox_auto.cppとjsb_Cocos2dxFox_auto.hppをプロジェクト配下のClassesへコピー
-* プロジェクト内配下のjni/Android.mkにCocos2dxFox.cppファイルとjsb_Cocos2dxFox_auto.cppファイルを追記し、ビルドの対象に含める<br>
-　→ LOCAL_SRC_FILESにClasses/Cocos2dxFox.cppとClasses/jsb_Cocos2dxFox_auto.cppの指定を追加してください。
-
-　
-Cocos2dxFox.cppのJniHelper.hのincludeパスを開発環境に合わせる（以下はその例）
+把Cocos2dxFox.cpp的JniHelper.h的include路徑調整到開発環境（下面是這個例子）
 
 	#include <iostrem>
 	#inclued “cocos2d.h”
 	#include “Cocos2dxFox.h”
 	#include “../android/jni/JniHelper.h”
 
-
-#4 インストール計測の実装
+#4 Install計測的安裝
 
 ## iOS・Android共通設定
 
-FOXプラグインをCocos2d-xに登録するため、AppDelegate.cppを編集します。<br>
-まず、以下のようにヘッダファイルをインクルードします。
+為了把F.O.X插件登錄到Cocos2d-x，編輯AppDelegate.cpp。
+首先，像下面那樣包含頭文件。
 
 	#include "jsb_Cocos2dxFox_auto.hpp"
 
-次に、AppDelegate::applicationDidFinishLaunching()メソッド内のsc->start();よりも前に以下のコードを記述します。
+然後、請在AppDelegate::applicationDidFinishLaunching()方法裡的sc->start();之前書寫下面的代碼。
 
 	sc->addRegisterCallback(register_all_jsb_Cocos2dxFox_auto);
 	sc->start();
 
-##4.1 インストールの計測
+##4.1 Install的計測
 
-初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。初回起動時に、ブラウザを起動し、広告クリック時に付与されたCookieの情報を照合することで、成果の計測を行います。
+導入初次啟動的Install計測，就能夠監測廣告效果。初次啟動時，啟動瀏覽器，對照在點擊廣告時所被賦予的Cookie資訊，進行成果計測。
 
-初回起動時にブラウザを起動するために、AppDelegate:applicationDidFinishLaunching:メソッド等、アプリケーションの起動時に必ず呼ばれる箇所に効果測定用の処理を追加します。
+在初次啟動時為了啟動瀏覽器，`AppDelegate:applicationDidFinishLaunching:` method等，追加效果測定用的處理到APP啟動時一定會被喚出的地方。
 
-ヘッダファイルをインクルード
+包含頭文件
 
 	#include "Cocos2dxFox.h"
-	
-成果通知のコードをJavaScript上に記述
+
+在JavaScript裡追加成果通知Code
 
 	FoxPlugin::sendConversion(“default”);
 
-sendConversionメソッドの引数には、通常は上記の通り"default"という文字列をそのまま指定してください。
+在sendConversion方法的參數裡，通常請完全按上面那樣指定"default"這個字符串。
 
-* [sendConversionの詳細](./doc/send_conversion/ja)
-	
-また、URLスキーム経由の起動を計測するために、URLスキームが設定されている全てのActivityのonResume()にsendConversionWithUrlSchemeメソッドを実装します。
+* [sendConversion的詳細](./doc/send_conversion)
 
-クラスをインポート
+為了計測經由URLScheme的啟動，請在設定了URLScheme的所有Activity的onResume()裡，安裝sendConversionWithUrlScheme方法。
+
+導入Class
 
 	import jp.appAdForce.android.cocos2dx.Cocos2dxAdManager;
-	
-アプリケーション起動時の起動計測（MainActivityクラスへの実装例）
+
+APP啟動時的啟動計測（MainActivity類的安裝範例）
 
 	public class MainActivity extends Cocos2dxActivity {
-	
+
 		@Override
 		protected void onResume() {
 			super.onResume();
@@ -302,7 +282,7 @@ sendConversionメソッドの引数には、通常は上記の通り"default"と
 		}
 	}
 
-URLスキームで起動されるActivityのlaunchModeが"singleTask"または"singleInstance"の場合は、URLスキーム経由でパラメータを受け取るためにonNewIntentメソッドをoverrideし、以下のようにsetIntentメソッドをコールしてください。
+如果靠URLScheme啟動的Activity的launchMode是"singleTask"或者"singleInstance"，為了經由URLScheme來接收參數，重寫onNewIntent方法，請按下面那樣來調用setIntent方法。
 
 	@Override
 	protected void onNewIntent(Intent intent) {
@@ -311,44 +291,42 @@ URLスキームで起動されるActivityのlaunchModeが"singleTask"または"s
 	}
 
 
-#5 LTV計測の実装
+#5 LTV計測的安裝
 
+透過LTV計測，能夠計測廣告流入別的消費金額和加入會員數等。為了計測，須在任意地點添加进行LTV成果通信的代码。
 
-LTV計測により、広告流入別の課金金額や入会数などを計測することができます。計測のために、任意の地点にLTV成果通信を行うコードを追加します。
+在成果到達後執行的程式中加入SDK的處理程式。譬如說，會員登錄和APP內消費後的消費計測，是將LTV計測處理記述在登錄、消費處理實行後的回調方法內。
 
-ソースの編集は、成果が上がった後に実行されるスクリプトに処理を記述します。例えば、会員登録やアプリ内課金後の課金計測では、登録・課金処理実行後のコールバック内にLTV計測処理を記述します。
-
-成果がアプリ内部で発生する場合、成果処理部に以下のように記述してください。
-LTV成果の計測のコードをJavaScript上に記述
+如果成果發生在APP內部，請如同以下記述在成果處理裡面。
+在JavaScript裡書寫LTV成果計測代碼。
 
 	cc.FoxPlugin.sendLtv(成果地点ID);
 
-> 成果地点ID(必須)：管理者より連絡します。その値を入力してください。
+> 成果地點ID(必須)：請輸入由管理員所告知的數值。
 
-* [sendLtvConversionの詳細](./doc/send_ltv_conversion/ja)
+* [sendLtvConversion的詳細](./doc/send_ltv_conversion)
 
+#6 流量分析的安裝
 
-#6 アクセス解析
+導入流量分析，能夠計測自然流入和廣告流入的安裝數，APP的啟動數，唯一用戶數(DAU/MAU)，持續率等。流量分析會在APP啟動、或從後台恢復時，追加進行Session計測的代碼。如果不做流量分析，可以省略本項目的安裝。
 
-アクセス解析を導入することで、自然流入・広告流入別の起動数、アクティブユーザー数(DAU/MAU)や継続率を計測することができます。アクセス解析では、アプリケーションが起動、もしくはバックグラウンドから復帰する際にセッション計測を行うコードを追加します。不要の場合には、本項目の実装を省略できます。
+####iPhone 項目
+iPhone需要進行以下設定。
 
-####iPhone プロジェクト
-iPhoneの場合、以下の設定が必要です。
-
-アプリ起動地点となるAppDelegate.cppのapplicationDidFinishLaunchingおよびapplicationWillEnterForegroundの両方に、以下のように記述してください。
+按照下面那樣添加在APP啟動地點AppDelegate.cpp的applicationDidFinishLaunching和applicationWillEnterForeground。
 
 	FoxPlugin::sendStartSession();
-	
-####Android プロジェクト
-Androidの場合、以下の設定が必要です。
 
-アプリケーションの起動及び、バックグラウンドからの復帰を計測するために、ActivityのonResume()にコードを追加します。
+####Android 項目
+Android需要進行如下設定。
 
-クラスをインポート
+為了計測APP的啟動和從後台的恢復，追加代碼到Activity的onResume()方法。
+
+導入Class
 
 	import jp.appAdForce.android.AnalyticsManager;
-	
-アプリケーション起動時の起動計測（MainActivityクラスへの実装例）
+
+APP啟動時的啟動計測（對於MainActivity class的安裝範例）。
 
 	public class MainActivity extends Activity {
 
@@ -359,25 +337,24 @@ Androidの場合、以下の設定が必要です。
 		}
 	}
 
-＜JavaのActivity上でonResume()が使えない場合＞
+＜如果在Java的Activity上，不能使用onResume()＞
 
-アプリ起動地点となるAppDelegate.cppのapplicationDidFinishLaunchingおよび、applicationWillEnterForeground 内で以下のように実行します。
+按照下面那樣添加在APP啟動地點AppDelegate.cpp的applicationDidFinishLaunching和applicationWillEnterForeground裡。
 
 	#include “Cocos2dxFox.h”
-	
+
 ---
-	
+
 	FoxPlugin::sendStartSession();
-	
-> ※アプリケーションがバックグラウンドから復帰した際に、そのActivityに起動計測の実装がされていない場合など、正確なアクティブユーザー数が計測できなくなります。<br>
-※JavaのonResume()とC++のapplicationWillEnterForegroundの両方でsendStartSession()が実行されていた場合、１ユーザーから２重にアプリ起動情報が送信されるため必ずどちらかで実装してください。
 
+> ※APP在從後台恢復時，如果此Activity沒有安裝啟動計測，將無法計測正確的活躍用戶。
+※在Java的onResume()和C++のapplicationWillEnterForeground執行sendStartSession()的話，一個用戶會同時送出雙重的APP啟動資訊，請確保只在其中一個地方導入SDK的處理。
 
-[アクセス解析による課金計測](./doc/analytics_purchase)
+[根據流量分析進行消費計測](./doc/analytics_purchase)
 
-#7 AndroidプロジェクトでProGuardを利用する場合
+#7 在Android項目裡利用ProGuard
 
-ProGuardを利用してF.O.X SDKを導入したアプリケーションを難読化する際に、警告が発生する場合があります。その際には、警告を回避するため以下の設定を追加してください。
+使用ProGuard讓導入F.O.X SDK的APP進行代碼混淆化時，可能會出現警告。為了回避警告請添加下面的設定
 
 	-libraryjars libs/AppAdForce.jar
 	-keep interface jp.appAdForce.** { *; }
@@ -393,64 +370,54 @@ ProGuardを利用してF.O.X SDKを導入したアプリケーションを難読
 	-dontwarn com.ansca.**
 	-dontwarn com.naef.jnlua.**
 
-※GooglePlayServiceSDKを導入されている場合、以下のページで記載されているkeep指定が記述されているかご確認ください。
+※如果已導入GooglePlayServiceSDK，請確認是否添加了下面網頁所記載的keep規則。
 
-[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
+[導入Google Play Services時的Proguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
+#8 進行疏通測試
 
-#8 疎通テストの実施
+在APP上架申請以前，在導入SDK的狀態請做充分的測試，以確保APP的動作沒有問題。
+由於在啟動後只發生一次Install計測的通信，如果想要再次進行Install計測的話，請卸載APP再次安裝
+如果是需要ProGuard的發布，請在加載了ProGuard的狀態進行測試。
 
-マーケットへの申請までに、Force Operation Xを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
+##8.1 測試步驟
 
-効果測定テストの手順については、管理者よりご連絡いたしますのでその手順に従いテストを実施してください。
+1. 如果測試用的設備已安裝APP，請先卸載掉APP
+1. 刪除測試設備的默認瀏覽器的Cookie
+1. 複製鄙司發行的測試用URL，粘貼到默認瀏覽器（標準瀏覽器）的URL欄裡進行訪問。<br />
+＊請一定在OS設定的默認瀏覽器裡使用測試URL來發出請求。點擊URL彈出的瀏覽器就是默認瀏覽器。郵件APP或QR碼讀取APP等這些APP內部會用WebView發生的畫面跳轉是無法計測的。
+1. 畫面移轉到Market<br />
+＊使用測試URL，可能會因為沒有設定跳轉目的地而彈出錯誤對話框，這個不影響測試。
+1. 在測試用的終端上安裝測試APP<br />
+1. 啟動APP，瀏覽器啟動<br />
+＊若流覽器無法啟動，說明沒有正常設定。重新設定後，若仍無法發現問題，請與弊司聯繫。
+1. 把畫面移轉到LTV地點<br />
+＊如果登錄了LTV地點執行此步驟
+1. 結束並從後台關閉APP<br />
+1. 再次啟動APP<br />
 
-成果のための通信は、起動後に一度のみ行わるため、二回目以降の起動では通信が発生しません。続けて効果測定テストを行いたい場合には、アプリケーションをアンインストールし、再度インストールから行ってください。
+請告訴鄙司3，6，7，9的時間。在鄙司這邊會確認是否正常被計測。待確認沒有問題的時候，測試算正式完成。
 
-##8.1 テストの手順
+#9 最後請務必確認（到現在發生過的問題集）
 
-SDKが正常に導入されていることを確認するためのテスト手順は以下の通りです。
-ProGuardを掛けてリリースを行う場合、必ずProGuardを掛けた状態でテストの実施をお願い致します。
+### 9.1. 未設定URL Scheme發布的APP引起無法從瀏覽器跳轉到APP
 
-1. テスト用端末にテストアプリがインストールされている場合には、アンインストール
-2. テスト用端末の「設定」→「Safari」→「Cookieとデータを消去」によりCookieを削除
-3. 弊社より発行したテスト用URLをクリック<br>
-   ※ テスト用URLは必ずOSに設定されているデフォルトブラウザでリクエストされるようにしてください。
-デフォルトブラウザとは、URLをクリックした際に自動で起動するブラウザのことです。
-メールアプリやQRコードアプリを利用され、そのアプリ内WebViewで遷移した場合には計測できません。
-4. マーケットへリダイレクト<br>
-   ※ テストURLの場合には、遷移先がなくエラーダイアログが表示される場合がありますが、問題ありません。
-5. テスト用端末にテストアプリをインストール
-6. アプリを起動、ブラウザが起動<br>
-   ※ ここでブラウザが起動しない場合には、正常に設定が行われていません。
-設定を見直していただき、問題が見当たらない場合には弊社へご連絡ください。
-7. LTV地点まで画面遷移
-8. アプリを終了し、バックグラウンドからも削除
-9. 再度アプリを起動
-10. 弊社へ3,6,7,9の時間をお伝えください。正常に計測が行われているか確認致します。
-11. 弊社側の確認にて問題がなければテスト完了となります。
+為了進行Cookie計測，在啟動外部瀏覽器以後，要利用URL Scheme跳轉到APP來返回到原來的畫面。這時有必要設定獨自的URL Scheme，未設定URL Scheme發布的APP將無法正常跳轉。
 
+### 9.2. URL Scheme裡包含了大寫字母，無法正常跳轉回APP
 
-#9 最後に必ずご確認ください（これまで発生したトラブル集）
+由於環境的不同，可能無法判別URL Scheme裡的大小寫字母，進而引起不能正常跳轉。因此URL Scheme請全部使用小寫字母來設定。
 
-###URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
+### 9.3. 用F.O.X計測的Install數值比Market的數值要大
 
-Cookie計測を行いブラウザを起動した場合には、URLスキームを利用してアプリケーションに遷移します。
+F.O.X使用了多種方式來監測終端的重複安裝。
+倘若設定了不進行重複監測，在相同終端再安裝時F.O.X會判定為新的安裝。
 
-この際、独自のURLスキームが設定されている必要があります。
+為了提高重複監測的精度，請進行如下設定。
 
+* [導入Google Play Services SDK來使用廣告ID](./doc/google_play_services/README.md)。
 
-###URLスキームに大文字が含まれ、正常にアプリに遷移されない
+* [利用外部存儲設定重複排除](./doc/external_storage/README.md)
 
-環境によって、URLスキームの大文字小文字が判別されないことにより正常にURLスキームの遷移が行えない場合があります。
-
-URLスキームは全て小文字で設定を行ってください。
-
-
-###F.O.Xで確認できるインストール数の値がマーケットの数字より大きい
-
-F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。重複検知が行えない設定では、同一端末で再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。重複検知の精度を向上するために、以下の設定を行ってください。
-
-* [広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
-
-* [（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja)
-
+---
+[主菜單](/README.md)

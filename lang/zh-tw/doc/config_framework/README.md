@@ -2,7 +2,7 @@
 
 ビルド対象のターゲットをクリックし、「Build Phases」→「Link Binary With Libraries」を選択。「+」ボタンを押し、各フレームワークを選択してください。
 
-![フレームワーク設定01](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/config_framework/ja/img01.png)
+![フレームワーク設定01](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/config_framework/img01.png)
 
 次のフレームワークをプロジェクトにリンクしてください。
 
@@ -17,7 +17,7 @@
 
 > AdSupport.frameworkはiOS 6以降で追加されたフレームワークのため、アプリケーションをiOS 5以前でも動作させる(iOS Deployment Targetを5.1以下に設定する)場合にはweak linkを行うために”Optional”に設定してください。
 
-![フレームワーク設定02](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/config_framework/ja/img02.png)
+![フレームワーク設定02](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/config_framework/img02.png)
 
 [TOP](https://github.com/cyber-z/public_fox_ios_sdk#2-%E8%A8%AD%E5%AE%9A)
 
