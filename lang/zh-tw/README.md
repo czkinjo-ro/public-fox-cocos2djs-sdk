@@ -210,7 +210,7 @@ AnalyticsManager.h|任意|頭文件。進行流量分析。|
 		</intent-filter>
 	</receiver>
 
-如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER R eceiver共存的設定](/lang/zh-tw/doc/install_referrer/README.md)
+如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER Receiver共存的設定](/lang/zh-tw/doc/install_referrer/README.md)
 
 ###3.3.4 與AndroidManifest.xml相關的其他設定
 * [URLScheme的設定](./doc/config_url_scheme/)
@@ -220,7 +220,7 @@ AnalyticsManager.h|任意|頭文件。進行流量分析。|
 
 ##3.4 導入到Cocos2d-js項目的Classes
 
-展開「FOX_Cocos2djs_SDK_<version>.zip」、進行如下操作。
+展開「FOX_Cocos2djs_SDK_&lt;version&gt;.zip」、進行如下操作。
 
 * 拷貝Android/Classes下面的Cocos2dxFox.h和Cocos2dxFox.cpp到項目下的Classes。
 * 拷貝Android/Classes下面的jsb_Cocos2dxFox_auto.cpp和jsb_Cocos2dxFox_auto.hpp到項目下的Classes。
@@ -421,4 +421,4 @@ F.O.X使用了多種方式來監測終端的重複安裝。
 * [利用外部存儲設定重複排除](./doc/external_storage/README.md)
 
 ---
-[主菜單](/README.md)
+[TOP MENU](/README.md)

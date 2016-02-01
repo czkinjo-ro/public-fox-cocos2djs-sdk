@@ -1,4 +1,4 @@
-## sendConversionの詳細
+## sendConversion的詳細
 
 利用`sendConversion:`方法能夠進行Install計測。如果使用Cookie計測手法，外部瀏覽器將被啟動。這個時候，可以把外部瀏覽器的跳轉目的地用字符串形式指定到`sendConversion:`的參數裡。
 
