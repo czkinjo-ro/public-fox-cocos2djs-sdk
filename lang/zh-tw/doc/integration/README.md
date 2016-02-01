@@ -1,22 +1,19 @@
-## インストール手順の詳細
+## Install步驟的詳細
 
-ダウンロードしたSDK「FOX_iOS_SDK_.zip」を展開し、以下ファイルをXcodeの任意の場所にコピーを行い、アプリケーションのプロジェクトに組み込んでください。
+展開下載的SDK「FOX_iOS_SDK_.zip」，請把下面的文件拷貝到Xcode的任意場所，導入到APP項目裡。
 
-![インストール01](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/integration/img01.png)
+![Install01](./img01.png)
 
-![インストール02](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/integration/img02.png)
+![Install02](./img02.png)
 
-![インストール03](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/integration/img03.png)
+![Install03](./img03.png)
 
-各ファイルの説明は以下の通りです。
+個文件的說明如下。
 
 <table>
-<tr><th>機能名</th><th>必須?</th><th>ファイル名</th></tr>
-<tr><td>ライブラリ本体</td><td>必須</td><td>libAppAdForce.a</td></tr>
-<tr><td>インストール計測</td><td>必須</td><td>AdManager.h</td></tr>
-<tr><td>LTV計測</td><td>オプション</td><td>Ltv.h</td></tr>
-<tr><td>アクセス計測</td><td>オプション</td><td>AnalyticsManager.h</td></tr>
+<tr><th>功能名</th><th>必須</th><th>文件名</th></tr>
+<tr><td>Library本身</td><td>必須</td><td>libAppAdForce.a</td></tr>
+<tr><td>Install計測</td><td>必須</td><td>AdManager.h</td></tr>
+<tr><td>LTV計測</td><td>任意</td><td>Ltv.h</td></tr>
+<tr><td>流量分析計測</td><td>任意</td><td>AnalyticsManager.h</td></tr>
 </table>
-
-[TOP](https://github.com/cyber-z/public_fox_ios_sdk#1-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-
