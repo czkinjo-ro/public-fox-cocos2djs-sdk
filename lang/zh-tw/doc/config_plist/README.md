@@ -64,4 +64,4 @@
 
 [AppAdForce.plist範例](/lang/zh-tw/doc/config_plist/AppAdForce.plist)
 
-[TOP](../../../README.md)
+[TOP](../README.md)
