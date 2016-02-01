@@ -1,4 +1,4 @@
-## Install步驟的詳細
+## 類庫導入的詳細
 
 展開下載的SDK「FOX_iOS_SDK_.zip」，請把下面的文件拷貝到Xcode的任意場所，導入到APP項目裡。
 

@@ -85,7 +85,7 @@ AnalyticsManager.h|任意|頭文件。進行流量分析。|
 
 ![類庫的導入步驟](./doc/integration/img01.png)
 
-[類庫的導入詳細](./doc/integration/README.md)
+[類庫導入的詳細](./doc/integration/README.md)
 
 ##2.3 導入到Cocos2d-js項目的Classes
 * 將jsb_Cocos2dxFox_auto.cpp和jsb_Cocos2dxFox_auto.hpp複製到project之下的Classes裡<br>
