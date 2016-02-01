@@ -172,6 +172,7 @@ AnalyticsManager.h|任意|頭文件。進行流量分析。|
 展開下載的SDK「FOX_Android_SDK_&lt;version&gt;.zip」，請把「AppAdForce.jar」導入到APP的項目裡。
 
 [Eclipse項目的導入方法](./doc/integration/eclipse/)
+
 [AndroidStudio項目的導入方法](./doc/integration/android_studio/)
 
 ##3.3 AndroidManifest.xml的編輯
@@ -209,7 +210,7 @@ AnalyticsManager.h|任意|頭文件。進行流量分析。|
 		</intent-filter>
 	</receiver>
 
-如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER R seceiver共存的設定](/lang/zh-tw/doc/integration/android/install_referrer/README.md)
+如果"com.android.vending.INSTALL_REFERRER"的receiver class已經被定義，請參照[讓多個INSTALL_REFERRER R eceiver共存的設定](/lang/zh-tw/doc/install_referrer/README.md)
 
 ###3.3.4 與AndroidManifest.xml相關的其他設定
 * [URLScheme的設定](./doc/config_url_scheme/)
