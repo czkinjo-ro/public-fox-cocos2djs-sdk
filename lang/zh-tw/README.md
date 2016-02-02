@@ -6,7 +6,7 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 
 ## F.O.X SDK是什麼
 
-在APP中導入FOX，可以實現如下功能。
+在APP中導入F.O.X，可以實現如下功能。
 
 * **Install計測**
 
@@ -51,8 +51,8 @@ Force Operation X (下面簡稱F.O.X)是基於智慧手機的，用來最大改�
 jsb_Cocos2dxFox_auto.cpp|必須|實現從JavaScript到使用C++的jsb文件
 jsb_Cocos2dxFox_auto.hpp|必須|實現從JavaScript到使用C++的jsb文件
 Cocos2dxFox.h|必須|頭文件。為從Cocos2d-x使用SDK做的封裝
-Cocos2dxFox.mm|	iOS専用	|類庫文件。在iOS環境為從Cocos2d-x使用FOX SDK做的封裝
-Cocos2dxFox.cpp|Android専用|類庫文件。在Android環境為從Cocos2d-x使用FOX SDK做的封裝
+Cocos2dxFox.mm|	iOS専用	|類庫文件。在iOS環境為從Cocos2d-x使用F.O.X SDK做的封裝
+Cocos2dxFox.cpp|Android専用|類庫文件。在Android環境為從Cocos2d-x使用F.O.X SDK做的封裝
 FoxVersionPlugin.h|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝
 FoxVersionDelegate.m|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝|
 FoxVersionPlugin.h|任意|類庫文件。為從Cocos2d-x控制BundleVersion做的封裝|
